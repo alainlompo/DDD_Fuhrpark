@@ -31,7 +31,7 @@ public abstract class Kopfdaten implements Serializable {
 	@Column(updatable=false)
 	private Date created;
 
-	public Kopfdaten() {
+	Kopfdaten() {
 		super();
 		created = new Date();
 	}

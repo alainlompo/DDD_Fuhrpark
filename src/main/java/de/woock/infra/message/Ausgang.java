@@ -12,11 +12,11 @@ import lombok.extern.log4j.Log4j2;
 @Component
 public class Ausgang {
 
-	private final JmsTemplate ausgang;
+	private final JmsTemplate ausgangTemplate;
 
     public void neueAntwort(AnfrageGestellt anfrage) {
     	log.debug("Antwort gesendet: {}", anfrage.getAntwort());
-        ausgang.send("Antwort", 
+        ausgangTemplate.send("Antwort",
                      session -> session.createObjectMessage(anfrage));
     }
 }

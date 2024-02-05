@@ -1,8 +1,5 @@
 package de.woock.infra.config;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -12,19 +9,19 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
+import javax.jms.ConnectionFactory;
+
 @EnableJms
 @Configuration
 public class MsgConfig {
 
+	@SuppressWarnings("java:S1452")
 	@Bean
 	public JmsListenerContainerFactory<?> myFactory(ConnectionFactory connectionFactory,
-	                                      DefaultJmsListenerContainerFactoryConfigurer configurer) throws JMSException {
+	                                      DefaultJmsListenerContainerFactoryConfigurer configurer) {
 	    DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
 	    factory.setConnectionFactory(connectionFactory);
-//	    factory.setConcurrency("5-10");
-//	    factory.setPubSubDomain(true);
 	    factory.setClientId("Fuhrpark");
-//	    factory.setSubscriptionDurable(false);
 	    configurer.configure(factory, connectionFactory);
 	    return factory;
 	}
@@ -40,7 +37,6 @@ public class MsgConfig {
 	public JmsTemplate jmsTemplate() {
 	    JmsTemplate template = new JmsTemplate();
 	    template.setConnectionFactory(connectionFactory());
-//	    template.setPubSubDomain(true);
 	    return template;
 	}
 

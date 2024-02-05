@@ -10,7 +10,14 @@ import de.woock.domain.VorgaengeBoard;
 @SpringBootApplication
 public class Fuhrpark {
 	
-	public static VorgaengeBoard  vorgaengeBoard;
+	private static VorgaengeBoard  vorgaengeBoard;
+	public static void setVorgaengeBoard(VorgaengeBoard board) {
+		vorgaengeBoard = board;
+	}
+
+	public static VorgaengeBoard getVorgaengeBoard() {
+		return vorgaengeBoard;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Fuhrpark.class, args);
@@ -18,9 +25,7 @@ public class Fuhrpark {
 	
 	@Bean
 	public ApplicationRunner test(VorgaengeBoard vorgaengeBoard) {
-		return args -> {
-			Fuhrpark.vorgaengeBoard  = vorgaengeBoard;
-		};
+		return args -> Fuhrpark.setVorgaengeBoard(vorgaengeBoard);
 	}
 }
 

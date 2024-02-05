@@ -17,6 +17,6 @@ public class AnfrageGestellt implements Serializable {
 	
 	public void bearbeiten(AnfrageGestellt anfrage) {
 		anfrage.setAntwort("Morgen, gegen 10 Uhr.");
-		Fuhrpark.vorgaengeBoard.neueAntwortAnheften(anfrage);
+		Fuhrpark.getVorgaengeBoard().neueAntwortAnheften(anfrage);
 	}
 }
